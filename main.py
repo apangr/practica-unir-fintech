@@ -27,12 +27,15 @@ def remove_duplicates_from_list(items):
 if __name__ == "__main__":
     filename = DEFAULT_FILENAME
     remove_duplicates = DEFAULT_DUPLICATES
-    if len(sys.argv) == 3:
+    if len(sys.argv) in (3, 4):
         filename = sys.argv[1]
         remove_duplicates = sys.argv[2].lower() == "yes"
+        # Aquí se acepta el nuevo parámetro para el orden (por defecto ascendente)
+        is_ascending = sys.argv[3].lower() != "desc" if len(sys.argv) == 4 else True
     else:
         print("The file must be provided as the first argument")
         print("The second argument indicates whether duplicates should be removed")
+        print("The third (optional) argument indicates the order: asc or desc")
         sys.exit(1)
 
     print(f"Words will be read from file {filename}")
